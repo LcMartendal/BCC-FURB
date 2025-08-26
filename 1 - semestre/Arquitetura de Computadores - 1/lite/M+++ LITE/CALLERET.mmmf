@@ -1,0 +1,12 @@
+CALL AAAA.
+FIM:  	
+JMP FIM;
+
+AAAA:
+	CALL BBBB;
+	RET; 
+BBBB:		
+	CALL CCCC;
+	RET;
+CCCC: 	
+	RET;

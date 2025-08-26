@@ -1,0 +1,4 @@
+REPETE:
+	MOV B,A;
+	MOV A,B;
+	JMP REPETE;

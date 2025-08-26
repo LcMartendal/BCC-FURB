@@ -1,0 +1,4 @@
+MOV FF,A;
+	ADD 02,A;
+REPETE:
+	JMP REPETE;

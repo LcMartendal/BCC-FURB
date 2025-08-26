@@ -1,0 +1,5 @@
+LACO:
+	MOV IN3,A;
+	MOV A,OUT3;
+	
+	JMP LACO;
