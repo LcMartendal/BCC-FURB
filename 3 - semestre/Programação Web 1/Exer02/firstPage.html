@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+    <input id="numero1" type="number">
+    <input id="numero2" type="number">
+    <br><button id="btSomar" onclick="resultadoSoma()">Somar</button>
+    <div id="rspSomar"></div>
+    <br><button id="btComparar" onclick="resultadoComparacao()">Comparar</button>
+    <div id="rspComparar"></div>
+
+    <script>
+        function resultadoSoma() {
+            const n1 = parseFloat(document.getElementById('numero1').value);
+            const n2 = parseFloat(document.getElementById('numero2').value);
+            document.getElementById('rspSomar').textContent = (n1 + n2);
+        }
+
+        function resultadoComparacao() {
+            var div = document.getElementById('rspComparar');
+            var num1 = document.getElementById('numero1').value;
+            var num2 = document.getElementById('numero2').value;
+            
+            if(num1 > num2) {
+                div.style.backgroundColor = "red";
+                div.innerText = 'Primeiro numero e maior';
+            }else if(num1 < num2) {
+                div.style.backgroundColor = "green";
+                div.innerText = 'Segundo numero e maior';
+            }else {
+                div.style.backgroundColor = "yellow";
+                div.innerText = 'Ambos sao iguais';
+            }
+
+        }
+    </script>
+</body>
+</html>

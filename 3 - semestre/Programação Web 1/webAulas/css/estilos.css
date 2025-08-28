@@ -1,0 +1,351 @@
+@media screen and (max-width: 430px) {
+    #menuLargo {
+        display: none;
+    }
+    #menuEstreito {
+        display: block;
+    }
+    main {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .flex-container {
+        flex-direction: column;
+    }
+    .flex-container div {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 431px) {
+    #menuLargo {
+        display: block;
+    }
+    #menuEstreito {
+        display: none;
+    }
+    main {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .flex-container {
+        flex-direction: row;
+    }
+}
+
+@font-face {
+    font-family: 'Minha fonte';
+    src: url('../fonts/WinkySans-VariableFont_wght.ttf');
+}
+
+body {
+    margin: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    font-size: 2em;
+    font-weight: bold;
+    background-color: aqua;
+    padding: 10px;
+
+    position: sticky;
+    top: 0px;
+}
+
+nav {
+    background-color: lightskyblue;
+    padding: 10px;
+}
+
+nav menu {
+    margin: 0px;
+    padding: 0px;
+}
+
+nav menu li {
+    list-style: none;
+}
+
+nav menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav menu a:hover {
+    text-decoration: underline;
+    color: lightgray;
+}
+
+nav img {
+    width: 24px;
+}
+
+.menuPrincipal > li {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.menuPrincipal > li:hover .subMenu {
+    display: block;
+    /*visibility: visible;*/
+}
+
+.subMenu {
+    background-color: lightblue;
+    padding: 10px;
+    position: fixed;
+    display: none;
+    /*visibility: hidden;*/
+}
+
+main {
+    margin-bottom: 40px;
+}
+
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 0.75em;
+    font-family: 'Minha fonte';
+
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.classe1 {
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+p.classe1 {
+    font-weight: bold;
+}
+
+.classe2 {
+    color: blue;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#paragrafo {
+    font-style: italic;
+    background-color: aquamarine;
+
+    position: relative;
+    left: 30px;
+    top: 30px;
+}
+
+table, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+tr:hover {
+    background-color: lightgray;
+}
+
+td:hover {
+    background-color: gray;
+}
+
+td:active {
+    background-color: black;
+    color: white;
+}
+
+img {
+    width: 100vw;
+    /*width: 100%;*/
+    /*100% em relação ao elemento-pai*/
+}
+
+#div_img {
+    width: 60vw;
+    border: 2px solid red;
+    height: 50vh;
+    overflow: auto;
+}
+
+.boldonse-regular {
+    font-family: "Boldonse", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#div_pai {
+    margin-top: 20px;
+    border: 1px solid blue;
+    width: 75vw;
+    height: 50vh;
+
+    position: relative;
+    /*left: 30px;*/
+}
+
+#div_filho {
+    border: 1px solid red;
+    width: 30vw;
+    height: 25vh;
+
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
+.container {
+    position: relative;
+}
+
+.container img {
+    opacity: 0.3;
+}
+
+.top-esq {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.top-dir {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.bot-esq {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.bot-dir {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.centralizado {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+}
+
+.artigo img {
+    width: 25vw;
+    float: right;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.artigo p {
+    text-align: justify;
+    margin-left: 10px;
+}
+
+.botao {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50px;
+    border: 3px outset gray;
+}
+
+.botao:hover {
+    text-decoration: underline;
+    background-color: darkblue;
+}
+
+.botao:active {
+    /*background-color: lightblue;*/
+    border: 3px inset gray;
+}
+
+.dica {
+    position: relative;
+    text-decoration: underline;
+}
+
+.dica:hover .dica-escondida {
+    display: block;
+}
+
+.dica-escondida {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: none;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 150px;
+    font-size: 0.75em;
+}
+
+.dica-escondida a {
+    color: white;
+}
+
+.lista > li:first-child {
+    font-weight: bold;
+    color: blue;
+}
+
+.lista li:last-child {
+    font-weight: bold;
+    color: red;
+}
+
+.lista li:nth-child(3) {
+    color: brown;
+}
+/*odd - even - Xn*/
+.tabela tr:nth-child(3n) {
+    background-color: beige;
+}
+
+.flex-container {
+    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    /*space-around -between -evenly*/
+    justify-content: center;
+    /*height: 400px;*/
+    align-items: center;
+}
+.flex-container div {
+    background-color: lightgray;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.flex-container-col2 {
+    width: 40%;
+}
+.flex-container-col3 {
+    width: 25%;
+}
+
+.grid-container {
+    background-color: green;
+    display: grid;
+    /* 1fr 2fr 1fr; */
+    grid-template-columns: auto auto auto;
+    /*gap: 10px;*/
+}
+
+.grid-container div {
+    background-color: lightgray;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}

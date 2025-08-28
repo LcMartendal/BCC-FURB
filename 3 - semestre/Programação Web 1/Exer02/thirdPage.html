@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+    <p id="pCounter">Contagem: <span id="Counter"></span></p>
+
+    <Ul>
+        <li onclick="alert('Pizza')">pizza</li>
+        <li onclick="alert('Hamburguer')">hamburguer</li>
+        <li onclick="alert('Churras')">churras</li>
+        <li onclick="alert('Nuggets')">nuggets</li>
+        <li onclick="alert('Batata frita')">batata frita</li>
+    </Ul>
+
+    <div id="divHover">Passe o mouse aqui!</div>
+
+    <table>
+        <tr>
+            <td onclick="trocarCor(this)">item1.1</td>
+            <td onclick="trocarCor(this)">item2.1</td>
+            <td onclick="trocarCor(this)">item3.1</td>
+        </tr>
+        <tr>
+            <td onclick="trocarCor(this)">item1.2</td>
+            <td onclick="trocarCor(this)">item2.2</td>
+            <td onclick="trocarCor(this)">item3.2</td>
+        </tr>
+        <tr>
+            <td onclick="trocarCor(this)">item1.3</td>
+            <td onclick="trocarCor(this)">item2.3</td>
+            <td onclick="trocarCor(this)">item3.3</td>
+        </tr>
+    </table>
+    <script>
+        let counter = 0;
+        setInterval(
+            () => {
+                counter++;
+                document.getElementById('Counter').innerHTML = counter
+            }, 1000
+        );
+
+        function trocarCor(celula) {
+            if(celula.style.backgroundColor === 'red') {
+                celula.style.backgroundColor = "blue";
+            }else if(celula.style.backgroundColor === "blue"){
+                celula.style.backgroundColor = "white";
+            }else {
+                celula.style.backgroundColor = "red";
+            }
+            
+        }
+    </script>
+</body>
+</html>

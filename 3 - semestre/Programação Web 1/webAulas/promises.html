@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    <script>
+
+        console.log('Antes de instanciar Promise');
+
+        var vPromise = new Promise(
+            (pFnCumpriu, pFnQuebrou) => {
+
+                console.log('Verificando condição Promise');
+
+                for (let j = 0; j <= (Math.random() * 5000); j++) {
+                    for (let i = 0; i < 10000000; i++) {}
+                }
+                //Condição que verifica cumprimento da promessa
+                var vDado = Math.floor(Math.random()*6 + 1);
+                if (vDado == 6) {
+                //Cumpriu promessa
+                    pFnCumpriu(vDado);
+                } else {
+                //Quebrou promessa
+                    pFnQuebrou(vDado);
+                }
+            }
+        );
+
+        console.log('Depois de instanciar Promise');
+
+        /*function fCumpriu(pNumero) {
+            return 'Cumpriu promessa! -> '+pNumero;
+        }
+
+        function fQuebrou(pNumero) {
+            return 'Quebrou promessa! -> '+pNumero;
+        }*/
+
+        console.log('Antes de verificar Promise');
+        async function chamaPromise() {
+            var vRetorno = 'Valor inicial';
+            await vPromise
+                .then((pNumero) => vRetorno = 'Cumpriu promessa! -> '+pNumero)
+                .catch((pNumero) => vRetorno = 'Quebrou promessa! -> '+pNumero);
+            
+            return vRetorno;
+        }
+
+        //console.log(chamaPromise().then( pRetorno => pRetorno ));
+        chamaPromise()
+            .then(
+                (pRetorno) => {
+                    console.log(pRetorno);
+                }
+            );
+
+        //console.log(chamaPromise());
+
+        console.log('Depois de verificar Promise');
+    </script>
+</body>
+</html>

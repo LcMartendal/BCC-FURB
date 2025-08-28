@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+    <header>
+        <a href="./mainPage.html"><img id="logo_empresa" src="./imagens/logoEmpresaFicticia.jpg" alt=""></a>
+        <div id="nC">
+            <h4 id="uNA">Usuário não autenticado</h4>
+            <img id="foto" src="./imagens/fotoSemPessoa.jpg" alt="">
+        </div>
+        <div id="c">
+            <a href="./thirdPage.html"><img id="foto_usuario" src="./imagens/cachorro.png" alt=""></a>
+        </div>
+    </header>
+    <main id="mainPage2">
+        <form action="#" method="get">
+            <label for="text">Login:</label><input type="text" id="login" placeholder="exemplo@.com" autofocus required>
+            <br><label for="password">Senha:</label><input type="password" id="senha" placeholder="suasenha1234" required>
+            <br><button onclick="autenticarAt()">Autenticar</button>
+        </form>
+    </main>
+    <footer>
+        Nomes: Luiz C. Martendal, Lucas Visconti e Guilherme B. Hanzen.
+    </footer>
+    <script src="./JS/script.js"></script>
+</body>
+</html>

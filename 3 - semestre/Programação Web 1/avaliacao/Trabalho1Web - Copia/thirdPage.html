@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <link rel="stylesheet" href="./CSS/style.css">
+    
+</head>
+<body>
+    <header>
+        <a href="./mainPage.html"><img id="logo_empresa" src="./imagens/logoEmpresaFicticia.jpg" alt=""></a>
+        <div id="nC">
+            <h4 id="uNA">Usuário não autenticado</h4>
+            <img id="foto" src="./imagens/fotoSemPessoa.jpg" alt="">
+        </div>
+        <div id="c">
+            <a id="uA" href="./thirdPage.html"><img id="foto_usuario" src="./imagens/cachorro.png" alt=""></a>
+        </div>
+    </header>    
+    <main id="mainPage3">
+        <form id="formPage3" action="#" method="get">
+            <label  for="nome">Nome completo:</label> <input type="text" autofocus required>
+            <br><label  for="idade">Idade:</label> <input type="number" name="idade" id="idade" min="15" max="100" required>
+            <br><label  for="numero">Numero-celular:</label> <input type="text" name="numero" id="numero" min="11" max="11" placeholder="ex: 47 12345-6789" required>
+            
+            <br><label  for="cidade">Sua cidade:</label>
+            <label  for="cidade1">Blumenau:</label> <input type="radio" name="cidade" id="cidade1" value="BNU">
+            <label  for="cidade2">Gaspar:</label> <input type="radio" name="cidade" id="cidade2" value="GPR">
+            <label  for="cidade3">Indaial:</label> <input type="radio" name="cidade" id="cidade3" value="IND">
+            
+            <br><label  for="estilo">Seu estilo de roupa favorito: </label>
+            <select name="estilo" id="estilo">
+                <option value="Classic_Streetwear">Classic Streetwear</option>
+                <option value="Techwear">Techwear</option>
+                <option value="Skate-Inspired_Streetwear">Skate-Inspired Streetwear</option>
+                <option value="Luxury_Streetwear">Luxury Streetwear</option>
+            </select>
+            
+            <br><label  for="busca_na_roupa">O que busca ao comprar alguma roupa nossa?</label>
+            <label  for="busca1">Estilo</label> <input type="radio" name="busca" id="busca1" value="estilo">
+            <label  for="busca2">Conforto</label> <input type="radio" name="busca" id="busca2" value="conforto">
+            <label  for="busca3">Estilo e conforto</label> <input type="radio" name="busca" id="busca3" value="estilo e conforto">
+
+            <br><input type="submit" value="Autenticar">
+
+            <div id="estilo_classe">
+                <label  for="estilo_pagina">Escolha o estilo da página:</label>
+                <label  for="default">Default</label> <input type="radio" name="estilo_pagina" id="default" onclick="remove_estilo_custom()">
+                <label  for="custom">Custom</label> <input type="radio" name="estilo_pagina" id="custom" onclick="estilo_custom()">
+            </div>
+ 
+        </form>
+    </main>
+    <footer>
+        Nomes: Luiz C. Martendal, Lucas Visconti e Guilherme B. Hanzen.
+    </footer>
+    <script src="./JS/script.js"></script>
+</body>
+</html>

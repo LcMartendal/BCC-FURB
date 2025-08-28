@@ -1,0 +1,12 @@
+MOV 00,A;
+LACO: 	
+	MOV A,B;
+	MOV A,C;
+	MOV A,D;
+	MOV A,E;
+	MOV A,OUT0;
+	MOV A,OUT1;
+	MOV A,OUT2;
+	MOV A,OUT3;
+	ADD 01,A;	
+	JMP LACO;

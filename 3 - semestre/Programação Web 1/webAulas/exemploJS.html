@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+    <title>Exemplo JavaScript</title>
+
+    <!--script src="js/classPessoa.js"></script-->
+    <script>
+        var x = 5;
+        let y = false;
+        const nome = 'Marcos';
+        z = '5';
+
+        a = 8;
+        b = 3;
+        //Operadores de comparação: > < >= <= == !=
+        //Operadores de comparação especiais: === !==
+        if (a > b) {
+            console.log('a é maior que b.');
+        } else {
+            console.log('a é menor que b.');
+        }
+
+        /*Operadores lógicos:
+        && - AND
+        || - OR
+        ! - NOT
+        */
+        if ((a > b) && (x === z)) {
+            console.log('a é maior que b e x é 100% igual a z');
+        } else {
+            console.log('a é menor que b OU x é diferente de z.')
+        }
+        //Operadores matemáticos: + - * / % **
+        //Outros operadores: += -= *= /= %= **=
+        //Incremento / decremento: ++ --;
+
+        function funcao() {
+            console.log('Função funcao foi chamada!');
+        }
+        funcao();
+        function soma(pNumero) {
+            return pNumero + 5;
+        }
+        var vRetorno = soma(3);
+        console.log('O valor de vRetorno é '+vRetorno);
+
+        for (let i=0; i < nome.length; i++) {
+            console.log(nome[i]);
+        }
+
+        var vetNomes = ["Marcos", "Blumenau", "FURB", false, 1, { carro: "Fusca", fabricante: "VolksWagen" }];
+        for(posVetor of vetNomes) {
+            console.log(posVetor);
+        }
+
+        novaVariavel = 'Marcos';
+        function testaEscopo() {
+            var novaVariavel = 'Cardoso';
+        }
+        testaEscopo();
+        console.log(novaVariavel);
+    </script>
+    <script src="js/script.js"></script>
+    <style>
+        .classe1 {
+            background-color: aqua;
+            font-weight: bold;
+        }
+
+        .classe2 {
+            color: brown;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h3 onclick="alteraConteudo()">Exemplo JavaScript</h3>
+    <h3 id="outro_h3">Outro h3 da página</h3>
+    <p>
+        <button onclick="ativaClasse1()">Ativa classe1</button>
+        <button onclick="document.getElementById('outro_h3').classList.add('classe2')">Ativa classe2</button><br>
+        <button onclick="document.getElementById('outro_h3').classList.remove('classe1')">Remove classe1</button>
+        <button onclick="document.getElementById('outro_h3').classList.remove('classe2')">Remove classe2</button><br>
+        <button onclick="document.getElementById('outro_h3').classList.toggle('classe1')">Liga/desliga classe1</button>
+        <button onclick="document.getElementById('outro_h3').classList.toggle('classe2')">Liga/desliga classe2</button>
+    </p>
+    <p>
+        <div>
+            <input type="text" id="itemLista" placeholder="Tarefa a ser feita"><br>
+            <button onclick="insereItem()">Incluir tarefa (último)</button>
+            <button onclick="insereInicio()">Incluir tarefa (início)</button><br>
+            <button onclick="excluiTarefa()">Excluir tarefa (último)</button>
+            <button onclick="document.getElementById('listaTarefas').removeChild(document.getElementById('listaTarefas').firstChild)">Excluir tarefa (início)</button>
+        </div>
+        <div>
+            <h4>Tarefas do dia</h4>
+            <ul id="listaTarefas"></ul>
+        </div>
+    </p>
+    <p>
+        <button onclick="insLinhaTabela()">Insere linha</button>
+        <button onclick="delLinhaTabela()">Excluir última linha</button>
+        <table id="tabela" class="table">
+            <tr>
+                <th>Coluna 1</th>
+                <th>Coluna 2</th>
+                <th>Coluna 3</th>
+            </tr>
+        </table>
+    </p>
+    <script type="module">
+        import { Aluno, Professor } from "./js/classPessoa.js";
+
+        var vAluno = new Aluno('Marcos','Cardoso','Blumenau','BCC');
+        //var vPessoa = new Pessoa('Marcos','Cardoso','Blumenau');
+        console.log(vAluno.nomeCompleto());
+    </script>
+    <!--script>
+        var vPessoa = new Pessoa('Marcos','Cardoso','Blumenau');
+        var vAluno = new Aluno('Marcos','Cardoso','Blumenau','BCC');
+        var vProfessor = new Professor('Marcos','Cardoso','Blumenau','DSC');
+    </script-->
+    <script>
+        //localStorage.setItem('nome','Marcos');
+        //sessionStorage.setItem('nome','Marcos');
+    </script>
+</body>
+</html>

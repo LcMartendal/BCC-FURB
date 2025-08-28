@@ -1,0 +1,4 @@
+	MOV 00,A;
+LACO:
+	ADD 01,A;
+	JMP LACO;

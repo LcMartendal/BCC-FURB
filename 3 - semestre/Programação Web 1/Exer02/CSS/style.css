@@ -1,0 +1,70 @@
+/*First page*/
+
+#numero1 {
+    width: 35px;
+}
+
+#numero2 {
+    width: 35px;
+}
+
+#btSomar {
+    font-size: 10px;
+    background-color: gray;
+    margin: 1px;
+    padding: 0px;
+}
+
+#btComparar {
+    font-size: 10px;
+    background-color: gray;
+    margin: 1px;
+    padding: 0px;
+}
+
+#rspSomar {
+    top: 5px;
+    font-size: 10px;
+    margin: 0;
+}
+
+#rspComparar {
+    top: 5px;
+    font-size: 10px;
+    margin: 0;
+}
+
+/*Second page*/
+
+#btTamaho {
+    position: absolute;
+    top:8px;
+    left: 200px;
+}
+
+/*Third page*/
+
+#pCounter {
+    border: solid 1px red;
+    width: 100px;
+}
+
+#divHover {
+    width: 150px;
+    background-color: blue;
+}
+
+#divHover:hover {
+    background-color: red;
+}
+
+table {
+    margin: 10px;
+}
+
+table, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+

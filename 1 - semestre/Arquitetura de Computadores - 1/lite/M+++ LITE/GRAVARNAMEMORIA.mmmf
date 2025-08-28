@@ -1,0 +1,17 @@
+MOV 22,B;
+	MOV 23,C;
+
+	MOV B,A;
+	MOV A,#00;
+	MOV C,A;
+	MOV A,#01;
+
+	MOV 99,B;
+	MOV 99,C;
+
+	MOV #00,A;
+	MOV A,B;
+	MOV #01,A;
+	MOV A,C;
+
+FIM:	JMP FIM;

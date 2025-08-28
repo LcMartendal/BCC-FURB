@@ -1,0 +1,71 @@
+body {
+    margin: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+$corFundo: lightblue;
+
+nav {
+    background-color: $corFundo;
+    padding: 10px;
+
+    menu {
+        margin: 0px;
+        padding: 0px;
+
+        li {
+            list-style: none;
+        }
+    }
+}
+
+.menuPrincipal  {
+    > li {
+    display: inline-block;
+    padding-right: 10px;
+    }
+
+    > li:hover .subMenu {
+        display: block;
+        /*visibility: visible;*/
+    }
+}
+
+@mixin texto-destacado {
+    font-weight: bold;
+    color: red;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+    @include texto-destacado;
+}
+
+div {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    @include texto-destacado;
+}
+
+.botao {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50px;
+    border: 3px outset gray;
+}
+
+.botao-default {
+    @extend .botao;
+    background-color: blue;
+}
+
+.botao-sucesso {
+    @extend .botao;
+    background-color: green;
+}
+
+.botao-erro {
+    @extend .botao;
+    background-color: red;
+}

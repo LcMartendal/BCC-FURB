@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+    <input type="text" id="campoTexto" oninput="mostrarTexto()">
+    <button onclick="mostrarTamanho()">Ver Tamanho</button>
+    <p id="textoDigitado" class="resultado"></p>
+    <p id="tamanhoTexto" class="resultado"></p>
+
+    <script>
+        function mostrarTexto() {
+            const texto = document.getElementById('entradaTexto').value;
+            document.getElementById('textoDigitado').textContent = texto;
+        }
+        
+        function mostrarTamanho() {
+        const texto = document.getElementById('campoTexto').value;
+        document.getElementById('tamanhoTexto').textContent = 'O tamanho atual do campo é de: ' + texto.length;
+        }
+    </script>
+
+</body>
+</html>

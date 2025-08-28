@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo Wordle Simples</title>
+  <style>
+    body {
+      text-align: center;
+      padding: 30px;
+      background-color: lightskyblue;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 120px;
+      text-transform: uppercase;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .letra {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      line-height: 40px;
+      margin: 1px;
+      font-size: 30px;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .green {
+      background-color: #2ecc71; /* verde */
+    }
+
+    .yellow {
+      background-color: #f1c40f; /* amarelo */
+      color: black;
+    }
+
+    .gray {
+      background-color: #7f8c8d; /* cinza */
+    }
+
+    #mensagem {
+      margin-top: 20px;
+    }
+
+    #tentativas {
+      margin-top: 20px;
+      font-size: 20px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>WORDLE</h1>
+
+  <input id="palavraTentatica" type="text" maxlength="5" >
+  <button onclick="tentar()">Tentar</button>
+  <button onclick="resetar()">Resetar</button>
+
+  <div id="mensagem"></div>
+  <div id="tentativas"></div>
+
+  <script>
+    const palavraSecreta = 'cacau';
+
+    function tentar() {
+      const tentativa = document.getElementById('palavraTentatica').value.toLowerCase();
+      const resultado = document.getElementById('mensagem');
+      const divTentativas = document.getElementById('tentativas');
+
+      if (tentativa.length !== 5) return;
+
+      const letrasResultado = [];
+      const usadaSecreta = Array(5).fill(false);
+      const usadaTentativa = Array(5).fill(false);
+
+      // Verde: letra certa no lugar certo
+      for (let i = 0; i < 5; i++) {
+        if (tentativa[i] === palavraSecreta[i]) {
+          letrasResultado[i] = 'green';
+          usadaSecreta[i] = true;
+          usadaTentativa[i] = true;
+        }
+      }
+
+      // Amarelo: letra certa no lugar errado
+      for (let i = 0; i < 5; i++) {
+        if (!usadaTentativa[i]) {
+          for (let j = 0; j < 5; j++) {
+            if (!usadaSecreta[j] && tentativa[i] === palavraSecreta[j]) {
+              letrasResultado[i] = 'yellow';
+              usadaSecreta[j] = true;
+              usadaTentativa[i] = true;
+              break;
+            }
+          }
+        }
+      }
+
+      // Cinza: letra errada
+      for (let i = 0; i < 5; i++) {
+        if (!letrasResultado[i]) {
+          letrasResultado[i] = 'gray';
+        }
+      }
+
+      // Mostrar tentativa com cores
+      for (let i = 0; i < 5; i++) {
+        const span = document.createElement('span');
+        span.textContent = tentativa[i];
+        span.className = 'letra ' + letrasResultado[i];
+        resultado.appendChild(span);
+      }
+
+      resultado.appendChild(document.createElement('br'));
+
+      // Se acertou
+      if (tentativa === palavraSecreta) {
+        const msg = document.createElement('div');
+        msg.textContent = 'Você acertou!';
+        divTentativas.appendChild(msg);
+      }
+
+      document.getElementById('palavraTentatica').value = '';
+    }
+
+    function resetar() {
+      document.getElementById('mensagem').innerHTML = '';
+      document.getElementById('tentativas').innerHTML = '';
+      document.getElementById('palavraTentatica').value = '';
+    }
+  </script>
+</body>
+</html>

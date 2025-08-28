@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício HTML</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <header>
+        Formulário
+    </header>
+
+    <p>
+        <form action="" style="background-color: lightgray; border: 1px solid black;">
+            <label for="nome_usuario">Digite seu nome de usuário:</label><input type="text" name="nome_usuario" id="nome_usuario" required>
+            <br><label for="login">Digite seu e-mail: </label><input type="text" name="login" id="login" required>
+            <br><label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
+            <br><label for="dt_nasc">Data de nascimento: </label>
+            <input type="date" name="dt_nasc" id="dt_nasc">
+
+            <br><label for="campoCb">Prática algum esporte? </label>
+            <input type="checkbox" name="campoCb" id="campoCb" value="S" >
+
+            <br>Qual?
+
+            <br><label for="esporte1">Futebol</label>
+            <input type="radio" name="esporte" id="esporte1" value="FUT">
+            <br><label for="esporte1">Volei</label>
+            <input type="radio" name="esporte" id="esporte2" value="VOL">
+            <br><label for="esporte1">Basquete</label>
+            <input type="radio" name="esporte" id="esporte3" value="BAS">
+
+            <br><input type="submit" value="Submitir os dados" style="background-color: green; color: white;">
+            <input type="reset" value="Limpar dados" style="background-color: green; color: white;">
+            
+        </form>
+
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td rowspan="3"></td>
+            </tr>
+            <tr>
+                <td rowspan="2"></td>
+                <td colspan="3"></td>
+                <!--<td></td>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+            </tr>
+            <tr>
+                <td></td>
+                <!--<td></td>-->
+                <td></td>
+                <td></td>
+                <!--<td></td>-->
+            </tr>
+            <tr>
+                <td rowspan="2"></td>
+                <td colspan="4"></td>
+                <!--<td></td>
+                <td ></td>
+                <td></td>-->
+            </tr>
+            <tr>
+                <!--<td></td>-->
+                <td></td>
+                <td></td>
+                <td ></td>
+                <td></td>
+            </tr>
+            
+        </table>
+    </p>
+</body>
+</html>

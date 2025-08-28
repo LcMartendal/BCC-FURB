@@ -1,0 +1,6 @@
+MOV 09,A;
+	MOV 0A,B;
+	SUB B,A;
+	
+REPETIR:
+	JMP REPETIR;

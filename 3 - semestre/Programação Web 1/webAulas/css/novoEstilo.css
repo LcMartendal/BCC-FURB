@@ -1,0 +1,58 @@
+body {
+  margin: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav {
+  background-color: lightblue;
+  padding: 10px;
+}
+nav menu {
+  margin: 0px;
+  padding: 0px;
+}
+nav menu li {
+  list-style: none;
+}
+
+.menuPrincipal > li {
+  display: inline-block;
+  padding-right: 10px;
+}
+.menuPrincipal > li:hover .subMenu {
+  display: block;
+  /*visibility: visible;*/
+}
+
+p {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: red;
+}
+
+div {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  color: red;
+}
+
+.botao, .botao-erro, .botao-sucesso, .botao-default {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 3px outset gray;
+}
+
+.botao-default {
+  background-color: blue;
+}
+
+.botao-sucesso {
+  background-color: green;
+}
+
+.botao-erro {
+  background-color: red;
+}/*# sourceMappingURL=novoEstilo.css.map */
