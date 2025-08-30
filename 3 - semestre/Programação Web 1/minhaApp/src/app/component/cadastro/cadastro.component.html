@@ -1,0 +1,49 @@
+<h3>Página de cadastro</h3>
+
+<p>
+    {{ pessoa.nome+" "+pessoa.sobrenome+", mora em "+pessoa.cidade }}
+</p>
+
+<!--p>
+    {{ vetPessoa }}
+</p-->
+
+<p>
+    {{ vetPessoa[1].nome+" "+vetPessoa[1].sobrenome+", mora em "+vetPessoa[1].cidade }}
+</p>
+
+<!--table>
+    {{
+        vetPessoa.map(
+            (pValor) => "<tr><td>"+pValor.nome+"</td></tr>"
+        );
+    }}
+</table-->
+
+<table>
+    <tr *ngFor="let vPessoa of vetPessoa">
+        <ng-container *ngIf="vPessoa.nome === 'Marcos'; else elseTemplate">
+            <td style="background-color: green;">{{ vPessoa.nome }}</td>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <td>{{ vPessoa.nome }}</td>
+        </ng-template>
+        
+        <td>{{ vPessoa.sobrenome }}</td>
+        <td>{{ vPessoa.cidade }}</td>
+
+        <td><button (click)="verificaTamanho(vPessoa.sobrenome)">Verifica tamanho de sobrenome</button></td>
+        <td><button (click)="trocaPessoa(vPessoa)">Edita pessoa</button></td>
+    </tr>
+</table>
+
+<p>{{ mensagem }}</p>
+
+<p>
+    <input type="text" [(ngModel)]="pessoa.nome"><br>
+    <input type="text" [(ngModel)]="pessoa.sobrenome"><br>
+    <input type="text" [(ngModel)]="pessoa.cidade">
+</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
