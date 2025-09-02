@@ -1,0 +1,581 @@
+openapi: 3.0.3
+info:
+  title: API AVA3
+  version: 1.0.0
+  description: API para gerenciamento do AVA3 - disciplinas, usuários, atividades e arquivos. EQUIPE - Fabian Formento, Luiz Carlos Martendal, Lucas Visconti
+
+servers:
+  - url: https://api.ava3.exemplo.com
+
+tags:
+  - name: Alunos
+    description: Operações relacionadas aos alunos
+  - name: Disciplinas
+    description: Operações relacionadas às disciplinas
+  - name: Professores
+    description: Operações relacionadas aos professores
+  - name: Atividades
+    description: Operações relacionadas às atividades
+  - name: Autenticação
+    description: Operações relacionadas à autenticação e login
+
+paths:
+  /login:
+    post:
+      tags:
+        - Autenticação
+      summary: Autenticar usuário
+      description: Permite que o usuário (aluno, professor ou secretário) faça login no sistema e receba um token de autenticação.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login realizado com sucesso, token retornado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Dados de login inválidos
+        '401':
+          description: Credenciais incorretas
+        '500':
+          description: Erro interno do servidor
+
+  /alunos/{alunoId}/disciplinas:
+    get:
+      tags:
+        - Alunos
+      summary: Listar disciplinas do aluno
+      description: Retorna as disciplinas em que o aluno está matriculado.
+      parameters:
+        - name: alunoId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID do aluno
+      responses:
+        '200':
+          description: Lista de disciplinas retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Disciplina'
+        '404':
+          description: Aluno não encontrado
+        '500':
+          description: Erro interno do servidor
+
+  /alunos/{alunoId}/atividades/{atividadeId}/entregas:
+    post:
+      tags:
+        - Alunos
+      summary: Enviar entrega de atividade pelo aluno
+      description: Aluno envia a entrega de uma atividade (arquivo ou respostas).
+      parameters:
+        - name: alunoId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID do aluno
+        - name: atividadeId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da atividade
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                arquivo:
+                  type: string
+                  format: binary
+                respostas:
+                  type: string
+                  description: Respostas em formato JSON (para questionários)
+      responses:
+        '201':
+          description: Entrega realizada com sucesso
+        '400':
+          description: Dados inválidos ou entrega fora do prazo
+        '404':
+          description: Aluno ou atividade não encontrado
+        '409':
+          description: Entrega já realizada
+        '500':
+          description: Erro interno do servidor
+
+  /disciplinas:
+    post:
+      tags:
+        - Disciplinas
+      summary: Criar nova disciplina
+      description: Permite criar uma nova disciplina.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinaInput'
+      responses:
+        '201':
+          description: Disciplina criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Disciplina'
+        '400':
+          description: Dados inválidos
+        '409':
+          description: Disciplina já existe
+        '500':
+          description: Erro interno do servidor
+
+  /disciplinas/{disciplinaId}:
+    put:
+      tags:
+        - Disciplinas
+      summary: Atualizar dados da disciplina
+      description: Atualiza informações da disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinaInput'
+      responses:
+        '200':
+          description: Disciplina atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Disciplina'
+        '400':
+          description: Dados inválidos
+        '404':
+          description: Disciplina não encontrada
+        '500':
+          description: Erro interno do servidor
+
+    delete:
+      tags:
+        - Disciplinas
+      summary: Excluir disciplina
+      description: Permite excluir uma disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      responses:
+        '204':
+          description: Disciplina excluída com sucesso
+        '404':
+          description: Disciplina não encontrada
+        '409':
+          description: Não é possível excluir disciplina com alunos ou atividades vinculadas
+        '500':
+          description: Erro interno do servidor
+
+  /disciplinas/{disciplinaId}/professores:
+    get:
+      tags:
+        - Professores
+      summary: Listar professores da disciplina
+      description: Retorna os professores vinculados a uma disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      responses:
+        '200':
+          description: Lista de professores retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professor'
+        '404':
+          description: Disciplina não encontrada
+        '500':
+          description: Erro interno do servidor
+
+    post:
+      tags:
+        - Professores
+      summary: Adicionar professor à disciplina
+      description: Adiciona um professor existente à disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - professorId
+              properties:
+                professorId:
+                  type: string
+                  description: ID do professor a ser adicionado
+                  example: "prof123"
+      responses:
+        '200':
+          description: Professor adicionado com sucesso
+        '400':
+          description: Dados inválidos
+        '404':
+          description: Disciplina ou professor não encontrado
+        '409':
+          description: Professor já está vinculado à disciplina
+        '500':
+          description: Erro interno do servidor
+
+  /disciplinas/{disciplinaId}/alunos:
+    get:
+      tags:
+        - Alunos
+      summary: Listar alunos da disciplina
+      description: Retorna os alunos matriculados em uma disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      responses:
+        '200':
+          description: Lista de alunos retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Aluno'
+        '404':
+          description: Disciplina não encontrada
+        '500':
+          description: Erro interno do servidor
+
+    post:
+      tags:
+        - Alunos
+      summary: Adicionar aluno à disciplina
+      description: Adiciona um aluno existente à disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - alunoId
+              properties:
+                alunoId:
+                  type: string
+                  description: ID do aluno a ser adicionado
+                  example: "aluno123"
+      responses:
+        '200':
+          description: Aluno adicionado com sucesso
+        '400':
+          description: Dados inválidos
+        '404':
+          description: Disciplina ou aluno não encontrado
+        '409':
+          description: Aluno já está matriculado na disciplina
+        '500':
+          description: Erro interno do servidor
+
+    delete:
+      tags:
+        - Alunos
+      summary: Remover aluno da disciplina
+      description: Remove um aluno específico da disciplina.
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+        - name: alunoId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: ID do aluno a ser removido da disciplina
+      responses:
+        '204':
+          description: Aluno removido da disciplina com sucesso
+        '400':
+          description: Parâmetros inválidos
+        '404':
+          description: Disciplina ou aluno não encontrado
+        '409':
+          description: Aluno não está matriculado na disciplina
+        '500':
+          description: Erro interno do servidor
+
+
+  /disciplinas/{disciplinaId}/atividades:
+    post:
+      tags:
+        - Atividades
+      summary: Criar nova atividade na disciplina
+      description: Professor cria uma nova atividade (questionário ou entrega de arquivo).
+      parameters:
+        - name: disciplinaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da disciplina
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtividadeInput'
+      responses:
+        '201':
+          description: Atividade criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Atividade'
+        '400':
+          description: Dados inválidos
+        '404':
+          description: Disciplina não encontrada
+        '500':
+          description: Erro interno do servidor
+
+  /atividades/{atividadeId}:
+    put:
+      tags:
+        - Atividades
+      summary: Atualizar dados da atividade
+      description: Permite ao professor atualizar informações da atividade.
+      parameters:
+        - name: atividadeId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da atividade
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtividadeInput'
+      responses:
+        '200':
+          description: Atividade atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Atividade'
+        '400':
+          description: Dados inválidos
+        '404':
+          description: Atividade não encontrada
+        '500':
+          description: Erro interno do servidor
+
+    delete:
+      tags:
+        - Atividades
+      summary: Excluir atividade
+      description: Permite excluir uma atividade.
+      parameters:
+        - name: atividadeId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID da atividade
+      responses:
+        '204':
+          description: Atividade excluída com sucesso
+        '404':
+          description: Atividade não encontrada
+        '500':
+          description: Erro interno do servidor
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - senha
+      properties:
+        email:
+          type: string
+          format: email
+          example: "usuario@universidade.edu"
+        senha:
+          type: string
+          format: password
+          example: "senha123"
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token JWT para autenticação nas próximas requisições
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+    Disciplina:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "disc123"
+        nome:
+          type: string
+          example: "Matemática"
+        descricao:
+          type: string
+          example: "Disciplina de matemática básica"
+        professores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Professor'
+        alunos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aluno'
+        atividades: 
+          type: array
+          items:
+            $ref: '#/components/schemas/Atividade'
+          description: "Lista de atividades da disciplina (presente apenas se 'incluir=atividades' for usado na requisição)"
+
+    DisciplinaInput:
+      type: object
+      required:
+        - nome
+      properties:
+        nome:
+          type: string
+          example: "Matemática"
+        descricao:
+          type: string
+          example: "Disciplina de matemática básica"
+
+    Professor:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "prof123"
+        nome:
+          type: string
+          example: "João Silva"
+        email:
+          type: string
+          format: email
+          example: "joao.silva@universidade.edu"
+
+    Aluno:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "aluno123"
+        nome:
+          type: string
+          example: "Maria Souza"
+        email:
+          type: string
+          format: email
+          example: "maria.souza@universidade.edu"
+
+    Atividade:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "ativ123"
+        titulo:
+          type: string
+          example: "Questionário 1"
+        descricao:
+          type: string
+          example: "Questionário sobre álgebra"
+        tipo:
+          type: string
+          enum: [questionario, entrega_arquivo]
+          example: "questionario"
+        dataEntrega:
+          type: string
+          format: date-time
+          example: "2024-06-30T23:59:00Z"
+        disciplinaId:
+          type: string
+          example: "disc123"
+
+    AtividadeInput:
+      type: object
+      required:
+        - titulo
+        - tipo
+        - dataEntrega
+      properties:
+        titulo:
+          type: string
+          example: "Questionário 1"
+        descricao:
+          type: string
+          example: "Questionário sobre álgebra"
+        tipo:
+          type: string
+          enum: [questionario, entrega_arquivo]
+          example: "questionario"
+        dataEntrega:
+          type: string
+          format: date-time
+          example: "2024-06-30T23:59:00Z"

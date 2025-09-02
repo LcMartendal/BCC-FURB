@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="card" *ngFor="let vFuncionario of vetFuncionarios">
+        <div class="foto">
+            <img src="{{vFuncionario.foto}}" alt="foto do funcionario de id = {{vFuncionario.id}}">
+        </div>
+        <div class="informacoes">
+            <p>{{vFuncionario.nome}}</p>
+            <p>{{vFuncionario.subobjeto.propriedade1}}</p>
+            <p>{{vFuncionario.subobjeto.propriedade2}}</p>
+        </div>
+        <div class="email">
+            <p><a href="mailto:{{ vFuncionario.email }}">{{vFuncionario.email}}</a></p>
+        </div>
+    </div>
+</div>
+
+<p>---</p>

@@ -1,0 +1,44 @@
+#container {
+   position: relative;
+    margin: 10px;
+}
+
+#consulta {
+    position: absolute;
+}
+
+#dados {
+    position: absolute;
+    left: 350px;
+    top: 0;
+    
+}
+
+#dados p{
+    font-size: 15px;
+    padding: 3px;
+    margin: 1px;    
+}
+
+#dados button{
+    position: absolute;
+    top: 190px;
+    right: 80px;
+}
+
+#alteracao {
+    position: absolute;
+    left: 700px;
+    top: 0;
+}
+
+#alteracao input{
+    height: 20px;
+
+}
+
+#alteracao button {
+    position: absolute;
+    top: 190px;
+    right: 192px;
+}

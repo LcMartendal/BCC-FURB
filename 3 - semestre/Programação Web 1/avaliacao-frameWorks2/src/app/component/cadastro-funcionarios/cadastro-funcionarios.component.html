@@ -1,0 +1,37 @@
+<div id="container">
+    <div id="consulta">
+        <h4>Consulta de funcionários:</h4>
+        <input type="text" [(ngModel)]="numeroId!">
+        <button (click)="consultar()">Consultar</button>
+    </div>
+
+    <div id="dados" *ngIf="funcionario">
+        <h5>Dados:</h5>
+        <p>Id: {{funcionario.id!}}</p>
+        <p>Nome: {{funcionario.nome!}}</p>
+        <p>Departamento: {{funcionario.departamento!}}</p>
+        <p>Endereço: {{funcionario.endereco!}}</p>
+        <p>E-mail: {{funcionario.email!}}</p>
+        <button (click)="excluir()">Exclusão</button>
+    </div>
+
+    <div *ngIf="mensagem" [ngStyle]="{ 'background-color': corMsg }">
+        {{ mensagem }}
+    </div>
+
+    <div id="alteracao" *ngIf="funcionario">
+        <h5>Alterar dados:</h5>
+        <form>
+            <input [(ngModel)]="funcionario.nome" name="nome" placeholder="Nome">
+            <input [(ngModel)]="funcionario.departamento" name="departamento" placeholder="Departamento">
+            <input [(ngModel)]="funcionario.endereco" name="endereco" placeholder="Endereço">
+            <input [(ngModel)]="funcionario.email" name="email" placeholder="Email">
+            <br><button (click)="alterar()">Alterar</button>
+        </form>
+    </div>
+
+    
+</div>
+    
+
+

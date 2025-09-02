@@ -1,0 +1,24 @@
+menu li {
+    display: inline-block;
+    padding-right: 15px;
+    font-weight: bold;
+}
+
+menu li a {
+    text-decoration: none;
+    color: black;
+}
+
+menu li a:hover {
+    text-decoration: underline;
+}
+
+menu {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+nav {
+    background-color: lightgray;
+    padding: 10px;
+}
